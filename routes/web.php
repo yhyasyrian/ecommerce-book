@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::view('/categories', 'welcome')->name('categories.index');
+Route::view('/publishers', 'welcome')->name('publishers.index');
+Route::view('/authors', 'welcome')->name('authors.index');
+Route::view('/myOrder', 'welcome')->name('orders.index');
+
 
 Route::middleware([
     'auth:sanctum',

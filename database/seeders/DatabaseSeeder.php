@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\Publisher;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,11 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Category::create([
+            'name' => 'برمجة',
+            'description' => 'قسم خاصة بالبرمجة',
+            'slug' => 'programming'
         ]);
+        Publisher::factory(2)
+            ->has(Book::factory(6))
+            ->create();
     }
 }
