@@ -4,3 +4,6 @@
 [x-cloak] {
     display: none;
 }
+input:focus,input:focus-visible,input:focus-visible,input:hover{
+    --tw-ring-shadow: 0 0 #000 !important;
+}
