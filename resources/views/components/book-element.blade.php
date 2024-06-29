@@ -5,7 +5,7 @@
                 after:transition-all after:duration-300 hover:after:left-0 after:z-10
             ">
             <img src="{{asset($book->thumbnail)}}" alt="{{$book->title}}"
-                 class="rounded-t-md mx-auto w-full"
+                 class="rounded-t-md mx-auto w-full aspect-[2/3]"
             >
             <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20
         opacity-0 group-hover:opacity-100 delay-150 transition
@@ -20,7 +20,9 @@
         </a>
     </h2>
     @if(!is_null($book->category_id))
-        <h3 class="text-gray-500">{{$book->category->name}}</h3>
+        <h3 class="text-gray-500 font-bold">
+            <a href="{{route('categories.show',$book->category->slug)}}">{{$book->category->name}}</a>
+        </h3>
     @endif
     <span>{{$book->price}}$</span>
     <ul class="flex flex-row justify-center">

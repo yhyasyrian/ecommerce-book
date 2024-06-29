@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
     {
         $books = Book::with('category')->paginate(10);
         $this->SEO();
-        return view(self::NAME_VIEW,compact('books'));
+        return $this->viewPage($books);
     }
     public function search(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
@@ -22,6 +23,10 @@ class HomeController extends Controller
             ->where('title', 'like', '%'.$stringSearch.'%')
             ->paginate(10);
         $this->SEO("بحث عن: ".$stringSearch);
+        return $this->viewPage($books);
+    }
+    public function viewPage(LengthAwarePaginator|Book $books): \Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
         return view(self::NAME_VIEW,compact('books'));
     }
     private function SEO(?string $search = null):void

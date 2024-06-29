@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 
 class CateoriesController extends Controller
@@ -36,7 +37,9 @@ class CateoriesController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $this->SEO('قسم ال'.$category->name);
+        $homeController = new HomeController();
+        return $homeController->viewPage($category->books()->paginate(12));
     }
 
     /**
@@ -61,5 +64,9 @@ class CateoriesController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+    private function SEO(?string $title):void
+    {
+        SEOTools::setTitle($title);
     }
 }

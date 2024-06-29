@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class BooksController extends Controller
 {
+    const NAME_VIEW_SHOW_BOOK = 'pages.book';
     /**
      * Show the form for creating a new resource.
      */
@@ -26,9 +31,9 @@ class BooksController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(Book $book): Factory|\Illuminate\Foundation\Application|View|Application
     {
-        return view('pages.book', compact('book'));
+        return view(self::NAME_VIEW_SHOW_BOOK, compact('book'));
     }
 
     /**
