@@ -14,7 +14,7 @@ Route::get('/book/{book}', [BooksController::class, 'show'])->name('show.book');
 Route::get('/category/{category:slug}', [CategoriesController::class, 'show'])->name('categories.show');
 Route::get('/categories', [CategoriesController::class,'index'])->name('categories.index');
 
-Route::view('/publisher/{publisher}', 'welcome')->name('publishers.show');
+Route::get('/publisher/{publisher}', [\App\Http\Controllers\PublishersController::class,'show'])->name('publishers.show');
 Route::get('/publishers', [\App\Http\Controllers\PublishersController::class,'index'])->name('publishers.index');
 
 Route::middleware([

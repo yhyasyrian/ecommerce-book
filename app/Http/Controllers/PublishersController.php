@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\InformationHomePage;
 use App\Models\Publisher;
+use App\Traits\HelperSEO;
 use Illuminate\Http\Request;
 
 class PublishersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    use HelperSEO;
     const NAME_VIEW_LIST_CATEGORIES = 'pages.publishers';
     public function index()
     {
@@ -37,7 +37,16 @@ class PublishersController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        //
+        $this->SEO('منشورات: ' . $publisher->name)
+            ->setDescription('الموقع ' . $publisher->address);
+        $homeController = new HomeController();
+        $homeController->setInformationHomePage(
+            new InformationHomePage(
+                title:'منشورات ' . $publisher->name,
+                description: 'الموقع '.$publisher->address
+            )
+        );
+        return $homeController->viewPage($publisher->books()->paginate(12));
     }
 
     /**
