@@ -47,6 +47,11 @@ class DatabaseSeeder extends Seeder
             'description' => 'قسم خاصة بالبرمجة',
             'slug' => 'programming'
         ]);
+        Category::insert([
+            'name' => 'لا شيء',
+            'description' => 'قسم إضافي تجريبي',
+            'slug' => 'any'
+        ]);
     }
     private function createPublisher():void
     {

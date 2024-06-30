@@ -10,15 +10,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/ts/app.ts'])
         <!-- Styles -->
         <!-- SEO -->
         {!! SEO::generate() !!}
         @livewireStyles
     </head>
-    <body class="font-[Cairo] antialiased">
+    <body class="font-[Cairo] antialiased bg-gray-100">
         <x-banner />
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen">
             @livewire('navigation-menu')
             <!-- Page Heading -->
             @if (isset($header))

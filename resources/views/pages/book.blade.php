@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-white p-4 sm:p-8 md:p-12 lg:p-14 max-w-[90%] md:container mx-auto mt-16">
+    <x-card class="w-[90%] mx-auto my-8">
         <h1 class="text-2xl font-extrabold mb-4">كتاب: {{$book->title}}</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div class="sm:order-2">
@@ -55,5 +55,5 @@
                 </table>
             </div>
         </div>
-    </div>
+    </x-card>
 </x-app-layout>

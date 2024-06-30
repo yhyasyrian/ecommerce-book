@@ -1,4 +1,4 @@
-<div>
+<div class="mt-2 bg-white">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 sm:gap-2 md:gap-4 lg:gap-8 mx-auto container p-4">
         <div>
             <h2 class="heading-footer">Title</h2>
@@ -9,17 +9,17 @@
         <div>
             <h2 class="heading-footer">التصنيفات</h2>
             <nav class="navigation-footer">
-                <a href="#">رابط</a>
-                <a href="#">رابط</a>
-                <a href="#">رابط</a>
+                <a class="link-effect" href="#">رابط</a>
+                <a class="link-effect" href="#">رابط</a>
+                <a class="link-effect" href="#">رابط</a>
             </nav>
         </div>
         <div>
             <h2 class="heading-footer">روابط مهم</h2>
             <nav class="navigation-footer">
-                <a href="#">رابط</a>
-                <a href="#">رابط</a>
-                <a href="#">رابط</a>
+                <a class="link-effect" href="#">رابط</a>
+                <a class="link-effect" href="#">رابط</a>
+                <a class="link-effect" href="#">رابط</a>
             </nav>
         </div>
     </div>

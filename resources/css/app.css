@@ -8,6 +8,9 @@ input:focus,input:focus-visible,input:focus-visible,input:hover{
     --tw-ring-shadow: 0 0 #000 !important;
 }
 @layer components{
+    ::selection{
+        @apply bg-blue-600/80 text-white/65;
+    }
     .style-table{
         @apply w-full;
     }
@@ -17,6 +20,9 @@ input:focus,input:focus-visible,input:focus-visible,input:hover{
     .leading-description{
         @apply leading-8;
     }
+    .input-search {
+        @apply w-2/3 md:w-full max-w-2xl outline-0 border-2 border-blue-500/75 hover:border-blue-500 rounded-md transition;
+    }
     .heading-footer {
         @apply text-xl font-extrabold mb-2 border-b pb-2;
     }
@@ -24,9 +30,12 @@ input:focus,input:focus-visible,input:focus-visible,input:hover{
         @apply flex flex-col gap-y-2;
     }
     .navigation-footer a {
-        @apply text-lg w-fit relative font-medium transition-all ease-linear;
+        @apply text-lg font-medium;
     }
-    .navigation-footer a::after{
+    .link-effect {
+        @apply w-fit relative transition-all ease-linear;
+    }
+    .link-effect::after{
         content: "";
         @apply w-0 h-0.5 absolute bg-blue-600 left-1/2 -translate-x-1/2 bottom-0 transition-all ease-linear hover:w-full;
     }

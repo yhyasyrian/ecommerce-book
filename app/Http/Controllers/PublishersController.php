@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
 
-class PublichersController extends Controller
+class PublishersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    const NAME_VIEW_LIST_CATEGORIES = 'pages.publishers';
     public function index()
     {
-        //
+        return view(self::NAME_VIEW_LIST_CATEGORIES);
     }
 
     /**

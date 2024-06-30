@@ -23,6 +23,6 @@ export default {
         },
     },
 
-    plugins: [forms, typography,require("tw-elements/plugin.cjs")],
+    plugins: [forms, typography],
     darkMode: "class"
 };

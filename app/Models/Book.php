@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Book extends Model
 {
     use HasFactory;
+    public const TABLE = 'books';
     protected $fillable = [
         'title',
         'description',
