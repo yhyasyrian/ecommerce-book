@@ -7,7 +7,7 @@
             </button>
         </form>
     @else
-        <div class="py-16 flex items-center flex-col gap-y-6">
+        <div class="pt-16 flex items-center flex-col gap-y-6">
             <h2 class="font-bold text-2xl">{{$informationHomePage->title}}</h2>
             <p class="leading-description text-lg">{{$informationHomePage->description}}</p>
         </div>

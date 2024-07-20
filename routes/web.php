@@ -7,7 +7,6 @@ use App\Http\Controllers\CategoriesController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
-Route::view('/authors', 'welcome')->name('authors.index');
 Route::view('/myOrder', 'welcome')->name('orders.index');
 Route::get('/book/{book}', [BooksController::class, 'show'])->name('show.book');
 
@@ -16,6 +15,9 @@ Route::get('/categories', [CategoriesController::class,'index'])->name('categori
 
 Route::get('/publisher/{publisher}', [\App\Http\Controllers\PublishersController::class,'show'])->name('publishers.show');
 Route::get('/publishers', [\App\Http\Controllers\PublishersController::class,'index'])->name('publishers.index');
+
+Route::get('/authors/{author}', [\App\Http\Controllers\AuthorsController::class,'show'])->name('authors.show');
+Route::get('/authors', [\App\Http\Controllers\AuthorsController::class,'index'])->name('authors.index');
 
 Route::middleware([
     'auth:sanctum',

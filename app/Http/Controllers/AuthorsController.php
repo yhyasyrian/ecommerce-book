@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\InformationHomePage;
 use App\Models\Author;
+use App\Traits\HelperSEO;
 use Illuminate\Http\Request;
 
 class AuthorsController extends Controller
 {
+    use HelperSEO;
+    const NAME_VIEW_LIST_CATEGORIES = 'pages.authors';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view(self::NAME_VIEW_LIST_CATEGORIES);
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -36,7 +39,16 @@ class AuthorsController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        $this->SEO('منشورات: ' . $author->name)
+            ->setDescription($author->description);
+        $homeController = new HomeController();
+        $homeController->setInformationHomePage(
+            new InformationHomePage(
+                title:'منشورات ' . $author->name,
+                description: $author->description
+            )
+        );
+        return $homeController->viewPage($author->books()->paginate(12));
     }
 
     /**

@@ -14,6 +14,7 @@ use Livewire\Component;
 abstract class ViewUtilities extends Component
 {
     private const NAME_VIEW = 'livewire.view-utilities';
+    protected static string $TABLE = Book::TABLE;
     public string $search = '';
     public function render(): Factory|\Illuminate\Foundation\Application|View|Application
     {
@@ -28,9 +29,9 @@ abstract class ViewUtilities extends Component
                 , 'like', '%' . $this->search . '%')
             ->select([
                 ...array_map(fn($column) => $this->getTable().'.'.$column,$this->getArraySelect()),
-                DB::raw('COUNT(`books`.`id`) as `books_count`')
+                DB::raw('COUNT(`'.static::$TABLE.'`.`id`) as `books_count`')
                 ])
-            ->leftJoin(Book::TABLE,Book::TABLE.'.'.$this->getColumnRelation().'_id','=',$this->getTable().'.id')
+            ->leftJoin(static::$TABLE,static::$TABLE.'.'.$this->getColumnRelation().'_id','=',$this->getTable().'.id')
             ->groupBy($this->getTable().'.id')
             ->get();
     }
