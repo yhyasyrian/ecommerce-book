@@ -62,6 +62,7 @@ return [
         'delete'    => 'حذف :name',
         'duplicate' => 'نسخ :name',
         'edit'      => 'تعديل :name',
+        'export'    => 'تصدير :name',
         'hide'      => 'إخفاء :name',
         'import'    => 'استيراد :name',
         'new'       => 'إنشاء :name',
