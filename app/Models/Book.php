@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Book extends Model
 {
@@ -39,5 +40,17 @@ class Book extends Model
     public function publisher(): BelongsTo|Publisher
     {
         return $this->belongsTo(Publisher::class);
+    }
+    public function getCategoryNameAttribute(): string {
+        return $this->category->name;
+    }
+    public function getAuthorsNameAttribute(): string {
+        $result = '';
+        $indexAuthor = 0;
+        foreach ($this->authors as $author) {
+            if ($indexAuthor++ > 0) $result .= ' و ';
+            $result .= $author->name;
+        }
+        return $result;
     }
 }

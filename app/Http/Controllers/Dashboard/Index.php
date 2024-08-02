@@ -18,7 +18,7 @@ class Index extends Controller
         $countCategories = $this->countCategories();
         $countPublishers = $this->countPublishers();
         $countAuthors = $this->countAuthors();
-        return view('dashboard.index', compact('countBook', 'countCategories', 'countPublishers', 'countAuthors'));
+        return viewDashboard('index', compact('countBook', 'countCategories', 'countPublishers', 'countAuthors'));
     }
     private function countBook():int
     {

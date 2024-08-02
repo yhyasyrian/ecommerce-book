@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BooksController;
+use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
@@ -8,7 +8,7 @@ use App\Http\Controllers\CategoriesController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::view('/myOrder', 'welcome')->name('orders.index');
-Route::get('/book/{book}', [BooksController::class, 'show'])->name('show.book');
+Route::get('/book/{book}', [\App\Http\Controllers\BooksController::class, 'show'])->name('show.book');
 
 Route::get('/category/{category:slug}', [CategoriesController::class, 'show'])->name('categories.show');
 Route::get('/categories', [CategoriesController::class,'index'])->name('categories.index');

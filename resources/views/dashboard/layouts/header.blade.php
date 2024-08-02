@@ -12,7 +12,7 @@
                  src="{{asset('theme/img/undraw_profile.svg')}}">
         </a>
         <!-- Dropdown - User Information -->
-        <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in"
+        <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in" style="right: unset;left: 0"
              aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>

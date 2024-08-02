@@ -5,6 +5,6 @@ return [
     'prefix_view' => 'dashboard',
     'route_sidebar' => [
         'الصفحة الرئيسية' => ['link'=>'home','icon'=>'fa-tachometer-alt'],
-        'الكتب' => ['link'=>'books.show','icon'=>'fa-book'],
+        'الكتب' => ['link'=>'books.index','icon'=>'fa-book'],
     ],
 ];
