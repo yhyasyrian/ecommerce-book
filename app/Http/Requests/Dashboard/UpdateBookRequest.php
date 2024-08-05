@@ -2,16 +2,13 @@
 
 namespace App\Http\Requests\Dashboard;
 
-use App\Interfaces\RequestDashboardInterface;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBookRequest extends FormRequest
+class UpdateBookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
-    public const MAX_SIZE_THUMBNAIL = 4; // as Mg
-    public const MEGABYTE_AS_BYTE = 1024;
     public function authorize(): bool
     {
         return true;
@@ -27,14 +24,14 @@ class CreateBookRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'isbn' => ['required', 'numeric', 'unique:books,isbn'],
+            'isbn' => ['required', 'numeric'],
             'date_publish' => ['required', 'numeric', 'min:1990'],
             'pages' => ['required', 'numeric','min:1'],
             'copies' => ['required', 'integer','min:1'],
             'price' => ['required', 'integer','min:0.1'],
             'category_id' => ['required', 'integer', 'exists:categories,id'],
             'publisher_id' => ['required', 'integer','exists:publishers,id'],
-            'thumbnail' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:'.(self::MAX_SIZE_THUMBNAIL * self::MEGABYTE_AS_BYTE),'extensions:jpg,png'],
+            'thumbnail' => ['image', 'mimes:jpg,png,jpeg', 'max:'.(CreateBookRequest::MAX_SIZE_THUMBNAIL * CreateBookRequest::MEGABYTE_AS_BYTE),'extensions:jpg,png'],
             'authors' => ['required', 'array','min:1'],
         ];
     }

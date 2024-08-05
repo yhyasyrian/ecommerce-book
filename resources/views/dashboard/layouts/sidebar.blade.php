@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion p-0" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard.home')}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{asset('')}}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -13,7 +13,7 @@
 
     <!-- Nav Item -->
     @foreach($linkSidebarAdmin as $title => $linkAndIconInArray)
-        <li class="nav-item active">
+        <li @class(['nav-item','active'=>isRouteDashboard($linkAndIconInArray['link'])])>
             <a class="nav-link" href="{{routeDashboard($linkAndIconInArray['link'])}}">
                 <i class="fas fa-fw {{$linkAndIconInArray['icon']}}"></i>
                 <span>{{$title}}</span></a>

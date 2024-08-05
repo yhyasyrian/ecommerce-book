@@ -17,6 +17,17 @@ if (!function_exists('routeDashboard')) {
         return route(config('dashboard.prefix_route') . '.' . $name, $parameters, $absolute);
     }
 }
+if (!function_exists('isRouteDashboard')) {
+    /**
+     * return true if user exists route
+     * @param string $name : name route
+     * @return bool
+     */
+    function isRouteDashboard(string $name): bool
+    {
+        return request()->routeIs(config('dashboard.prefix_view') . '.' .$name);
+    }
+}
 if (!function_exists('viewDashboard')) {
     /**
      * view dashboard

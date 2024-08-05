@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-extrabold mb-4">كتاب: {{$book->title}}</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div class="sm:order-2">
-                <img src="{{asset($book->thumbnail)}}" alt="{{$book->title}}"
+                <img src="{{$book->imageUrl}}" alt="{{$book->title}}"
                      class="mx-auto sm:mx-0 sm:ms-auto w-[300px] aspect-[3/4]"
                 >
                 <h2 class="sm:text-end text-xl font-bold">الناشر: {{$book->publisher->name}}</h2>

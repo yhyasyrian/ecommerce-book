@@ -48,7 +48,7 @@
             </table>
         </div>
         <div class="col-lg-4">
-            <img src="{{asset($book->thumbnail)}}" alt="{{$book->title}}"
+            <img src="{{$book->imageUrl}}" alt="{{$book->title}}"
                  class="w-100 mx-auto mb-3" style="max-width: 300px; aspect-ratio: 3/4;"
             >
             <h2 class="font-weight-bold h4">الناشر: {{$book->publisher->name}}</h2>

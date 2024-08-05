@@ -10,6 +10,7 @@ class ColumnDashboard
     private string $column;
     private string $columnAs = '';
     private string $title;
+    private bool $isClickableShow = false;
     private string $prefix = '';
     private bool $showInTable = false;
     private TypeColumn $typeColumn;
@@ -103,6 +104,16 @@ class ColumnDashboard
     public function setColumnAs(string $columnAs): self
     {
         $this->columnAs = $columnAs;
+        return $this;
+    }
+    public function isClickableShow(): bool
+    {
+        return $this->isClickableShow;
+    }
+
+    public function setIsClickableShow(bool $isClickableShow): self
+    {
+        $this->isClickableShow = $isClickableShow;
         return $this;
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('isbn')->nullable();
             $table->text('description')->nullable();
-            $table->date('date_publish');
+            $table->unsignedSmallInteger('date_publish');
             $table->unsignedInteger('pages');
             $table->unsignedInteger('copies');
             $table->decimal('price', 8, 2)->default(0);

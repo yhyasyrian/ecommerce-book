@@ -4,6 +4,7 @@
         @foreach($columns as $column)
             <th scope="col">{{$column->getTitle()}}</th>
         @endforeach
+        <th scope="col">اجراء</th>
     </tr>
     </thead>
     <tbody>
@@ -11,31 +12,30 @@
         <tr>
             @foreach($columns as $column)
                 @empty($column->getColumnAs())
-                    <td>{{ $row->{$column->getColumn()} }}{{$column->getPrefix()}}</td>
+                    <td>@if($column->isClickableShow())
+                            <a href="{{routeDashboard($nameRoute.'.show',[$paramRoute=>$row->id])}}">
+                                {{ $row->{$column->getColumn()} }}{{$column->getPrefix()}}
+                            </a>
+                        @else
+                            {{ $row->{$column->getColumn()} }}{{$column->getPrefix()}}
+                        @endif</td>
                 @else
-                    <td>{{ $row->{$column->getColumnAs()} }}{{$column->getPrefix()}}</td>
+                    <td>
+                        @if($column->isClickableShow())
+                            <a href="{{routeDashboard($nameRoute.'.show',[$paramRoute=>$row->id])}}">
+                                {{ $row->{$column->getColumnAs()} }}{{$column->getPrefix()}}
+                            </a>
+                        @else
+                            {{ $row->{$column->getColumnAs()} }}{{$column->getPrefix()}}
+                        @endif</td>
                 @endempty
             @endforeach
+            <td class="text-center">
+                <a class="btn btn-primary d-inline-block m-1" href="{{routeDashboard($nameRoute.'.edit',[$paramRoute=>$row->id])}}">تعديل</a>
+                <button data-id-for-remove="{{$row->id}}" data-toggle="modal" data-target="#removeModel" class="btn btn-danger d-inline-block">حذف</button>
+            </td>
         </tr>
     @endforeach
     </tbody>
 </table>
 {{ $rows->links('pagination::bootstrap-5') }}
-@section('head')
-    <link href="{{asset('theme/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-@endsection
-@section('script')
-    <script src="{{asset('theme/vendor/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('theme/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <!-- Page level custom scripts -->
-    <script>
-        $("#dataTable").DataTable({
-            "language":{
-                "url":"https://cdn.datatables.net/plug-ins/2.1.2/i18n/ar.json"
-            },
-            paging: false,
-            info: false
-        })
-    </script>
-@endsection
-

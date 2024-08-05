@@ -15,7 +15,9 @@ class Input extends Component
         public string $name,
         public string $type = 'text',
         public array|\Illuminate\Support\Collection $options = [],
+        public array $optionSelected = [],
         public string $label = '',
+        public mixed $oldData = '',
         public array $otherAttributes = [],
     ){}
 

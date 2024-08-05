@@ -4,7 +4,7 @@
                 after:content-[''] after:w-full after:h-full after:bg-white/75 after:block after:absolute after:top-0 after:-left-full after:rounded-t-md
                 after:transition-all after:duration-300 hover:after:left-0 after:z-10
             ">
-            <img src="{{asset($book->thumbnail)}}" alt="{{$book->title}}"
+            <img src="{{$book->imageUrl}}" alt="{{$book->title}}"
                  class="rounded-t-md mx-auto w-full aspect-[2/3]"
             >
             <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20

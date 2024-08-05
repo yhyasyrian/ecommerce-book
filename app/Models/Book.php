@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use App\Traits\ImageUrlTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory,ImageUrlTrait;
     public const TABLE = 'books';
+    protected string $imageAttribute = 'thumbnail';
     protected $fillable = [
         'title',
         'description',
@@ -25,6 +28,10 @@ class Book extends Model
         'thumbnail'
     ];
     public $timestamps = false;
+    protected $casts = [
+        'date_publish' => 'integer',
+    ];
+
     public function authors(): BelongsToMany
     {
         return $this->belongsToMany(Author::class, 'author_book');
@@ -50,6 +57,16 @@ class Book extends Model
         foreach ($this->authors as $author) {
             if ($indexAuthor++ > 0) $result .= ' و ';
             $result .= $author->name;
+        }
+        return $result;
+    }
+    public function getPublisherNameAttribute(): string {
+        return $this->publisher->name;
+    }
+    public function getAuthorsNameArrayAttribute(): array {
+        $result = [];
+        foreach ($this->authors as $author) {
+            $result[] = $author->id;
         }
         return $result;
     }

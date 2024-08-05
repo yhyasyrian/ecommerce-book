@@ -13,14 +13,12 @@
             ...$otherAttributes
             ])}}
             >
-            @php($lastSelected = old($name))
             @foreach($options as $option)
                 @php([$value,$title] = $option)
                 <option value="{{$value}}"
-                        @if(is_string($lastSelected) and $lastSelected === $value or
-                            is_array($lastSelected) and in_array($value,[...old($name)]))
+                        @if(in_array($value,$optionSelected))
                             selected
-                    @endif
+                       @endif
                 >{{$title}}</option>
             @endforeach
         </select>
@@ -35,7 +33,7 @@
             "autocomplete"=>$name,
             ...$otherAttributes
             ])}}
-            >{{old($name)}}</textarea>
+            >{{$oldData}}</textarea>
     @else
         <input
             class="form-control {{$attributes->get('class')}} @error($name) is-invalid @enderror"
@@ -46,8 +44,8 @@
             'name'=>$name,
             "placeholder"=>$label,
             "aria-placeholder"=>$label,
-            "autocomplete"=>$name,
-            'value'=>old($name),
+            "autocomplete"=>($type != 'password') ? $name : 'false',
+            'value'=>($type != 'password') ? $oldData : '',
             ...$otherAttributes
             ])}}
         >
