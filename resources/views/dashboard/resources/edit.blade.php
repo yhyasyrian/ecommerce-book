@@ -18,7 +18,7 @@
                                 :otherAttributes="$column->getAttributes()"
                                 :oldData="$data->{$column->getColumn()}"
                                 :optionSelected="is_array($data->{$column->getColumnAs().'Array'}) ? $data->{$column->getColumnAs().'Array'} : [$data->{$column->getColumnAs().'Array'}]"
-                                :options="$column->getSelects()->map(fn ($model) => [$model->id ,$model->name])"
+                                :options="is_a($column->getSelects(),\Illuminate\Database\Eloquent\Collection::class) ? $column->getSelects()->map(fn ($model) => [$model->id ,$model->name]) : $column->getSelects()"
                             />
                         @else
                             <x-dashboard.input
@@ -28,7 +28,7 @@
                                 :otherAttributes="$column->getAttributes()"
                                 :oldData="$data->{$column->getColumn()}"
                                 :optionSelected="is_array($data->{$column->getColumn()}) ? $data->{$column->getColumn()} : [$data->{$column->getColumn()}]"
-                                :options="$column->getSelects()->map(fn ($model) => [$model->id ,$model->name])"
+                                :options="is_a($column->getSelects(),\Illuminate\Database\Eloquent\Collection::class) ? $column->getSelects()->map(fn ($model) => [$model->id ,$model->name]) : $column->getSelects()"
                             />
                         @endif
                     @else

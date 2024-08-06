@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\RolesEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Author;
 use App\Models\Book;

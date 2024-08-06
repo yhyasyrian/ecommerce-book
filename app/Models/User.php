@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\RolesEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -29,6 +30,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -68,8 +70,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Book::class, 'book_user');
     }
-    public function role(): BelongsTo
+    public function role():RolesEnum
     {
-        return $this->belongsTo(Role::class);
+        return RolesEnum::getRole($this->role);
+    }
+    public function getNameRoleAttribute():string
+    {
+        return $this->role()->getName();
     }
 }

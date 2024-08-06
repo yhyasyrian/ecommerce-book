@@ -17,7 +17,7 @@
                             :otherAttributes="$column->getAttributes()"
                             :oldData="old($column->getColumn())"
                             :optionSelected="is_array(old($column->getColumn())) ? old($column->getColumn()) : [old($column->getColumn())]"
-                            :options="$column->getSelects()->map(fn ($model) => [$model->id ,$model->name])"
+                            :options="is_a($column->getSelects(),\Illuminate\Database\Eloquent\Collection::class) ? $column->getSelects()->map(fn ($model) => [$model->id ,$model->name]) : $column->getSelects()"
                         />
                     @else
                         <x-dashboard.input

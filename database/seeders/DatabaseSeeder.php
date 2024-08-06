@@ -2,14 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RolesEnum;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Publisher;
+use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,13 +31,21 @@ class DatabaseSeeder extends Seeder
     private array $books = [];
     public function run(): void
     {
+        $this->createAdmin();
+        if (!app()->isProduction()) $this->createTestData();
+    }
+    private function createAdmin():void
+    {
+        User::create([
+            'name' => config('app.admin.name'),
+            'email' => config('app.admin.email'),
+            'password' => Hash::make(config('app.admin.password')),
+            'role' => RolesEnum::OWNER->value
+        ]);
+    }
+    private function createTestData():void
+    {
         $this->createCategory();
-        /*
-         * i don't want use these way, i will create data manual
-         * Publisher::factory(2)
-            ->has(Book::factory(6))
-            ->create();
-        */
         $this->createPublisher();
         $this->createBooks();
         $this->createAuthors();

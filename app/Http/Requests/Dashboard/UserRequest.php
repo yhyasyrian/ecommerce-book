@@ -24,7 +24,8 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => ['required','string','min:2'],
-            'password' => ['required', 'string', Password::default()]
+            'password' => ['required', 'string', Password::default()],
+            'role' => ['required', 'int']
         ];
     }
 }

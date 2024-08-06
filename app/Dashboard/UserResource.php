@@ -2,6 +2,7 @@
 
 namespace App\Dashboard;
 
+use App\Enums\RolesEnum;
 use App\Http\Requests\Dashboard\UserRequest;
 use App\Models\User;
 use App\Services\DashboardResource\ColumnDashboard;
@@ -60,6 +61,12 @@ class UserResource extends ResourceService
             ->setTitle('كلمة السر')
             ->setTypeColumn(TypeColumn::PASSWORD)
             ->setShowInTable(false);
+        $columns[] = ColumnDashboard::setColumn('role')
+            ->setTitle('الصلاحية')
+            ->setTypeColumn(TypeColumn::SELECT)
+            ->setSelects(RolesEnum::toArrayWithLabel())
+            ->setShowInTable(true)
+            ->setColumnAs('nameRole');
         $this->setColumns($columns);
     }
     protected function createHandel(FormRequest $request):void
@@ -67,13 +74,23 @@ class UserResource extends ResourceService
         \request()->validate([
             'email' => ['unique:users,email']
         ]);
-        parent::createHandel($request);
+        if (auth()->user()->role()->checkIfCan(\request()->get('role')))
+            parent::createHandel($request);
+        else abort(403,'عذراً لا تملك الصلاحيات');
     }
     protected function updateHandel(FormRequest $request,Model $model):void
     {
         \request()->validate([
             'email' => Rule::unique('users')->ignore($model->id),
         ]);
-        parent::updateHandel($request,$model);
+        if ($this->isCanEditUser($model))
+            parent::updateHandel($request,$model);
+        else abort(403,'عذراً لا تملك الصلاحيات');
+    }
+    private function isCanEditUser(Model $model):bool
+    {
+        if (auth()->id() === $model->id and \request()->get('role') === auth()->user()->role)
+            return true;
+        return auth()->user()->role()->checkIfCan(\request()->get('role')) and auth()->user()->role()->checkIfCan($model->role());
     }
 }
