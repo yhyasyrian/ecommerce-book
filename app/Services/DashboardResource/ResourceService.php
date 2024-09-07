@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 abstract class ResourceService
 {
     private array $columns = [];
-    abstract public function getModel(): Model;
+    abstract public function getModel(): Model|\Illuminate\Database\Eloquent\Builder;
 
     abstract public function getTitleForOne(): string;
 

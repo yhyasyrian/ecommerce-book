@@ -10,5 +10,6 @@ return [
         'الأقسام' => ['link'=>'categories.index','icon'=>'fa-tags'],
         'الناشرين' => ['link'=>'publishers.index','icon'=>'fa-tags'],
         'الأعضاء' => ['link'=>'users.index','icon'=>'fa-users'],
+        'المشتريات' => ['link'=>'shoppings.index','icon'=>'fa-shopping-cart'],
     ],
 ];

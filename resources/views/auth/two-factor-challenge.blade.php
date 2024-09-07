@@ -1,3 +1,4 @@
+@php(\App\Classes\SearchEngineOptimization::builder('التحقق بخطوتين')->setDescription('التحقق بخطوتين'))
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

@@ -14,19 +14,13 @@
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in" style="right: unset;left: 0"
              aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">
-                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                الملف الشخصي
-            </a>
-            <a class="dropdown-item" href="#">
-                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                الاعدادات
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <form method="POST" action="{{ route('logout') }}" x-data>
+                @csrf
+            <button class="dropdown-item" type="submit">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                تسجيل الخروح
-            </a>
+                تسجيل خروج
+            </button>
+            </form>
         </div>
     </div>
 </nav>

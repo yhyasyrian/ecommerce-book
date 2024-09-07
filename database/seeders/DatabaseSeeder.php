@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'name' => config('app.admin.name'),
             'email' => config('app.admin.email'),
             'password' => Hash::make(config('app.admin.password')),
-            'role' => RolesEnum::OWNER->value
+            'role' => (string) RolesEnum::OWNER->value
         ]);
     }
     private function createTestData():void

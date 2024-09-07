@@ -27,7 +27,7 @@
     <span>{{$book->price}}$</span>
     <ul class="flex flex-row justify-center">
         @for($i=1;$i<=5;$i++)
-            <li><i class="fa-solid fa-star"></i></li>
+            <li class="fa-star"><i @class(['fa-solid fa-star','text-yellow-500'=>$i <= round($book->ratings_avg_value)])></i></li>
         @endfor
     </ul>
 </div>

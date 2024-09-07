@@ -20,4 +20,8 @@ class SearchEngineOptimization
         $this->SEOTools->setDescription($description);
         return $this;
     }
+    public static function builder(string $title):self
+    {
+        return new self($title);
+    }
 }

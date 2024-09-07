@@ -20,24 +20,8 @@ class CategoriesController extends Controller
     public function index(): Factory|\Illuminate\Foundation\Application|View|Application
     {
         $this->SEO('التصنيفات')
-            ->setDescription('عرض تصنيفات الموقع');
+            ->setDescription('عرض التصنيفات');
         return view(self::NAME_VIEW_LIST_CATEGORIES);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -55,29 +39,5 @@ class CategoriesController extends Controller
             )
         );
         return $homeController->viewPage($category->books()->paginate(12));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Category $category)
-    {
-        //
     }
 }

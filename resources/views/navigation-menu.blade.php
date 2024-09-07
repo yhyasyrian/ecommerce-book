@@ -1,3 +1,4 @@
+@use(\App\Enums\RolesEnum)
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -6,7 +7,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <x-application-mark class="block h-9 w-auto"/>
+                        <x-application-mark class="block h-16 w-auto"/>
                     </a>
                 </div>
 
@@ -25,8 +26,11 @@
                         {{ __('Authors') }} <i class="fas fa-pen ps-2"></i>
                     </x-nav-link>
                     @auth
-                        <x-nav-link href="{{ route('orders.index') }}" :active="request()->routeIs('orders.index')">
-                            {{ __('My Order') }} <i class="fas fa-basket-shopping ps-2"></i>
+                        <x-nav-link href="{{ route('my.purchases') }}" :active="request()->routeIs('my.purchases')">
+                            {{ __('مشترياتي') }} <i class="fas fa-cart-shopping ps-2"></i>
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('cart') }}" :active="request()->routeIs('cart')">
+                            @livewire('cart.cart-navigation')
                         </x-nav-link>
                     @endauth
                 </div>
@@ -124,7 +128,11 @@
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
-
+                            @if(auth()->user()->role()->checkIfCan(RolesEnum::USER))
+                                    <x-dropdown-link href="{{ routeDashboard('home') }}">
+                                        {{ __('Dashboard') }}
+                                    </x-dropdown-link>
+                            @endif
                                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                     <x-dropdown-link href="{{ route('api-tokens.index') }}">
                                         {{ __('API Tokens') }}
@@ -187,8 +195,11 @@
                 {{ __('Authors') }} <i class="fas fa-pen ps-2"></i>
             </x-responsive-nav-link>
             @auth
-                <x-responsive-nav-link href="{{ route('orders.index') }}" :active="request()->routeIs('orders.index')">
-                    {{ __('My Order') }} <i class="fas fa-basket-shopping ps-2"></i>
+                <x-responsive-nav-link href="{{ route('my.purchases') }}" :active="request()->routeIs('my.purchases')">
+                    {{ __('مشترياتي') }} <i class="fas fa-cart ps-2"></i>
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('cart') }}" :active="request()->routeIs('cart')">
+                    @livewire('cart.cart-navigation')
                 </x-responsive-nav-link>
             @endauth
         </div>
@@ -218,7 +229,11 @@
                                            :active="request()->routeIs('profile.show')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
-
+                    @if(auth()->user()->role()->checkIfCan(RolesEnum::USER))
+                        <x-responsive-nav-link href="{{ routeDashboard('home') }}">
+                            {{ __('Dashboard') }}
+                        </x-responsive-nav-link>
+                    @endif
                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                         <x-responsive-nav-link href="{{ route('api-tokens.index') }}"
                                                :active="request()->routeIs('api-tokens.index')">

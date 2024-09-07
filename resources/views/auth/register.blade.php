@@ -1,3 +1,4 @@
+@php(\App\Classes\SearchEngineOptimization::builder('إنشاء حساب جديد')->setDescription('إنشاء حساب جديد'))
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

@@ -16,8 +16,11 @@ class HomeController extends Controller
     private ?InformationHomePage $informationHomePage = null;
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $books = Book::with('category')->paginate(10);
-        $this->SEO("الرئيسية");
+        $books = Book::with('category')
+            ->withAvg('ratings','value')
+            ->paginate(10);
+        $this->SEO("الرئيسية")
+		->setDescription(config('app.description'));
         return $this->viewPage($books);
     }
     public function search(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

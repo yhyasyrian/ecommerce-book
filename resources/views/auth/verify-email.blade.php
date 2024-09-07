@@ -1,3 +1,4 @@
+@php(\App\Classes\SearchEngineOptimization::builder('تأكيد الإيميل')->setDescription('تأكيد الإيميل'))
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

@@ -39,4 +39,23 @@ input:focus,input:focus-visible,input:focus-visible,input:hover{
         content: "";
         @apply w-0 h-0.5 absolute bg-blue-600 left-1/2 -translate-x-1/2 bottom-0 transition-all ease-linear hover:w-full;
     }
+    li.fa-star {
+        @apply text-gray-700;
+    }
+    .click.fa-star:hover ~ .click.fa-star,.click.fa-star:hover
+    {
+        @apply text-yellow-500;
+    }
+    .button{
+        @apply px-2 inline-block h-7 cursor-pointer shadow text-white;
+    }
+}
+
+@keyframes top-to-down {
+    from {
+        transform: translateY(-20px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }

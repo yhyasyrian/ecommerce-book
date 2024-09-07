@@ -5,31 +5,21 @@ namespace App\Http\Controllers;
 use App\Classes\InformationHomePage;
 use App\Models\Publisher;
 use App\Traits\HelperSEO;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 
 class PublishersController extends Controller
 {
     use HelperSEO;
+
     const NAME_VIEW_LIST_CATEGORIES = 'pages.publishers';
-    public function index()
+
+    public function index(): View|Factory|Application
     {
+        $this->SEO('الناشرون')
+            ->setDescription('عرض الناشرون');
         return view(self::NAME_VIEW_LIST_CATEGORIES);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -42,34 +32,10 @@ class PublishersController extends Controller
         $homeController = new HomeController();
         $homeController->setInformationHomePage(
             new InformationHomePage(
-                title:'منشورات ' . $publisher->name,
-                description: 'الموقع '.$publisher->address
+                title: 'منشورات ' . $publisher->name,
+                description: 'الموقع ' . $publisher->address
             )
         );
         return $homeController->viewPage($publisher->books()->paginate(12));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Publisher $publisher)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Publisher $publisher)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Publisher $publisher)
-    {
-        //
     }
 }

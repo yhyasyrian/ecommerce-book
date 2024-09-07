@@ -1,3 +1,4 @@
+@php(\App\Classes\SearchEngineOptimization::builder('إستعادة كلمة السر')->setDescription('إستعادة كلمة السر'))
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

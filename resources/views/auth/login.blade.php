@@ -1,3 +1,4 @@
+@php(\App\Classes\SearchEngineOptimization::builder('تسجيل الدخول')->setDescription('تسجيل الدخول للموقع'))
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

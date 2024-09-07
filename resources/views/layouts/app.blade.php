@@ -1,3 +1,7 @@
+@props([
+    'head',
+    'script',
+])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
     @if(app()->getLocale() === 'ar') dir="rtl" @else dir="ltr" @endif
@@ -8,11 +12,14 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
-
+        @isset($head)
+            {{$head}}
+        @endisset
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/ts/app.ts'])
         <!-- Styles -->
         <!-- SEO -->
+        <link rel="shortcut icon" href="{{asset('Assets/Images/book-store.svg')}}" type="image/svg+xml">
         {!! SEO::generate() !!}
         @livewireStyles
     </head>
@@ -20,6 +27,7 @@
         <x-banner />
         <div class="min-h-screen">
             @livewire('navigation-menu')
+            @livewire('notification')
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
@@ -37,5 +45,8 @@
         @stack('modals')
         <x-footer />
         @livewireScripts
+        @isset($script)
+            {{$script}}
+        @endisset
     </body>
 </html>

@@ -15,6 +15,7 @@ class Book extends Model
     use HasFactory,ImageUrlTrait;
     public const TABLE = 'books';
     protected string $imageAttribute = 'thumbnail';
+    private array $ratings = ['avg'=>[],'users'=>[]];
     protected $fillable = [
         'title',
         'description',
@@ -30,6 +31,7 @@ class Book extends Model
     public $timestamps = false;
     protected $casts = [
         'date_publish' => 'integer',
+        'price' => 'decimal:2'
     ];
 
     public function authors(): BelongsToMany
@@ -47,6 +49,25 @@ class Book extends Model
     public function publisher(): BelongsTo|Publisher
     {
         return $this->belongsTo(Publisher::class);
+    }
+    public function ratings(): HasMany{
+        return $this->hasMany(Rating::class);
+    }
+    public function ratingAvg():int
+    {
+        if (!isset($this->ratings['avg'][$this->id]))
+            $this->ratings['avg'][$this->id] = round($this->ratings()->avg('value'));
+        return $this->ratings['avg'][$this->id];
+    }
+    public function isRating():bool{
+        if (!auth()->check()) return false;
+        if (!isset($this->ratings['exists'][$this->id])) $this->ratings['exists'][$this->id] = $this->ratings()->currentUser()->exists();
+        return $this->ratings['exists'][$this->id];
+    }
+    public function lastRating():int{
+        if (!$this->isRating()) return 0;
+        if (!isset($this->ratings['users'][$this->id])) $this->ratings['users'][$this->id] = $this->ratings()->currentUser()->value('value');
+        return $this->ratings['users'][$this->id];
     }
     public function getCategoryNameAttribute(): string {
         return $this->category->name;

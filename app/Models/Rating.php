@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Rating extends Model
 {
@@ -14,4 +15,7 @@ class Rating extends Model
         'value'
     ];
     public $timestamps = false;
+    public function scopeCurrentUser(Builder $builder){
+        return $builder->where('user_id',auth()->id());
+    }
 }

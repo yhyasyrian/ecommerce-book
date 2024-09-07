@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('book_id')->constrained('books')->cascadeOnDelete();
             $table->unsignedInteger('copies');
-            $table->decimal('price', 8, 2);
+            $table->decimal('price', 8, 2)->default(0);
             $table->boolean('bought')->default(false);
+            $table->timestamp('bought_at');
         });
     }
 

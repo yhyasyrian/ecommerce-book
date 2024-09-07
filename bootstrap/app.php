@@ -12,7 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
         then: function (){
             \Illuminate\Support\Facades\Route::prefix(config('dashboard.prefix_route'))
-                ->middleware('web')
+                ->middleware(['web','auth','can:access-dashboard'])
                 ->name(config('dashboard.prefix_route').'.')
                 ->group(base_path('routes/dashboard.php'))
             ;
