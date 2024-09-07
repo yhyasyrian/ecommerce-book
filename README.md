@@ -48,7 +48,7 @@ If you need to create pages as resources in the dashboard, you can do that with 
 * Responsive location on various screens
 * Use livewire for dynamic some commands (search authors and categories, and add book to cart, and set stars)
 * Dashboard for add books and categories and authors and users, change role users
-* Payments method (Strip - Paypal)
+* Payments method (Stripe - Paypal)
 * Search engine optimization is done through a tool artesaos/seotools
 
 # Contributing
