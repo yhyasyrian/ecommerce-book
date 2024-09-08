@@ -38,6 +38,6 @@ class CategoriesController extends Controller
                 description: $category->description
             )
         );
-        return $homeController->viewPage($category->books()->paginate(12));
+        return $homeController->viewPage($category->books()->withAvg('ratings','value')->paginate(12));
     }
 }

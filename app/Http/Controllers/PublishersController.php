@@ -36,6 +36,6 @@ class PublishersController extends Controller
                 description: 'الموقع ' . $publisher->address
             )
         );
-        return $homeController->viewPage($publisher->books()->paginate(12));
+        return $homeController->viewPage($publisher->books()->withAvg('ratings','value')->paginate(12));
     }
 }

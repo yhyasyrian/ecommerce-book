@@ -36,6 +36,6 @@ class AuthorsController extends Controller
                 description: $author->description
             )
         );
-        return $homeController->viewPage($author->books()->paginate(12));
+        return $homeController->viewPage($author->books()->withAvg('ratings','value')->paginate(12));
     }
 }
