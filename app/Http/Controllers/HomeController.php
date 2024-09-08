@@ -41,4 +41,8 @@ class HomeController extends Controller
     {
         $this->informationHomePage = $informationHomePage;
     }
+    public function myPurchases(){
+        $this->SEO('المشتريات');
+        return view('pages.my-purchases');
+    }
 }

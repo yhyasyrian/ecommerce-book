@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Payments;
 use App\Classes\Payments\StripePayment;
 use App\Http\Controllers\Controller;
 use App\Services\BuyBookService;
+use App\Traits\HelperSEO;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -14,12 +15,14 @@ use Stripe;
 
 class StripeController extends Controller implements HasMiddleware
 {
+    use HelperSEO;
     private StripePayment $payment;
     public function __construct(){
         $this->payment = new StripePayment(auth()->user());
     }
     public function index(): View|Factory|Application
     {
+        $this->SEO('الدفع بإستخدام بطاقة ائتمانية');
         return $this->payment->createOrder();
     }
     public function store(): \Illuminate\Http\RedirectResponse

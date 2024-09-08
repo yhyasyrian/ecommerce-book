@@ -39,13 +39,15 @@
             @endforeach
         </tbody>
     </table>
-    <h2 class="text-center text-xl font-bold my-2">إجمالي المبلغ: {{$totalPrice}}$</h2>
-    <div class="container mx-auto my-6 flex justify-evenly">
-        <div class="inline-block w-32" id="paypal-button-container"></div>
-        <a class="block h-full button bg-yellow-500 w-fit px-4 py-2 rounded" href="{{route('show.stripe')}}">بطاقة ائتمانية
-            <i class="fa-solid fa-credit-card"></i>
-        </a>
-    </div>
+    @if($totalPrice > 0)
+        <h2 class="text-center text-xl font-bold my-2">إجمالي المبلغ: {{$totalPrice}}$</h2>
+        <div class="container mx-auto my-6 flex justify-evenly">
+            <div class="inline-block w-32" id="paypal-button-container"></div>
+            <a class="block h-full button bg-yellow-500 w-fit px-4 py-2 rounded" href="{{route('show.stripe')}}">بطاقة ائتمانية
+                <i class="fa-solid fa-credit-card"></i>
+            </a>
+        </div>
+    @endif
     @if(!empty($this->error))
         <p class="text-center max-w-4xl font-bold text-red-500">{{$this->error}}</p>
     @endif

@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
-Route::view('/my-purchases', 'pages.my-purchases')->name('my.purchases');
 Route::get('/book/{book}', [BooksController::class, 'show'])->name('show.book');
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::get('/stripe', [StripeController::class, 'index'])->name('show.stripe');
-Route::post('/stripe', [StripeController::class, 'store'])->name('store.stripe');
 
 Route::get('/category/{category:slug}', [CategoriesController::class, 'show'])->name('categories.show');
 Route::get('/categories', [CategoriesController::class, 'index'])->name('categories.index');
@@ -30,9 +26,9 @@ Route::get('/authors', [AuthorsController::class, 'index'])->name('authors.index
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::view('/my-purchases', [HomeController::class,'myPurchases'])->name('my.purchases');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::get('/stripe', [StripeController::class, 'index'])->name('show.stripe');
+    Route::post('/stripe', [StripeController::class, 'store'])->name('store.stripe');
 });
