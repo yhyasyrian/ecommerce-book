@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
         $stringSearch = request('search');
         $books = Book::with('category')
+            ->withAvg('ratings','value')
             ->where('title', 'like', '%'.$stringSearch.'%')
             ->paginate(10);
         $this->SEO("بحث عن: ".$stringSearch);
