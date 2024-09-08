@@ -27,7 +27,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
 ])->group(function () {
-    Route::view('/my-purchases', [HomeController::class,'myPurchases'])->name('my.purchases');
+    Route::get('/my-purchases', [HomeController::class,'myPurchases'])->name('my.purchases');
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::get('/stripe', [StripeController::class, 'index'])->name('show.stripe');
     Route::post('/stripe', [StripeController::class, 'store'])->name('store.stripe');
